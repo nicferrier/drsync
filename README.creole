@@ -1,0 +1,43 @@
+Some tools to help copy files between similar laptops.
+
+== Why? ==
+Becuase you don't want your whole laptop in Dropbox. The bastards.
+
+== How? ==
+
+Very sketchy right now. Do not expect it to work... but:
+
+{{{
+~ $ bash bin/sshdiff nferrier@10.2.7.54 work/bwinparty/blog
+.d..t...... blog/
+<f.st...... blog/client-test-meetup-june-2014.creole
+
+~ $ bash bin/sshpull nferrier@10.2.7.54 work/bwinparty/blog
+...
+}}}
+
+== Caveats? ==
+
+Yeah. Copying files around with shell is a pita. Unless you root
+everything here from some common root it will get all sorts of
+confused.
+
+So probably {{{cd ~}}} before you do anything.
+
+I'll try and fix that.
+
+
+== How do I say //drsync// ? ==
+
+I'm not sure whether you say it:
+
+dar sync
+
+or:
+
+dr sync
+
+or even:
+
+d rsync
+
