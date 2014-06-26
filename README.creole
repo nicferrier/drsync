@@ -27,7 +27,7 @@ So probably {{{cd ~}}} before you do anything.
 I'll try and fix that.
 
 
-== How do I say //drsync// ? ==
+== How do I say "drsync" ? ==
 
 I'm not sure whether you say it:
 
