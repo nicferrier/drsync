@@ -1,0 +1,10 @@
+#!/bin/sh
+
+SSHENDPOINT=$1
+shift
+for i in $* 
+do 
+	rsync -aie ssh $i $SSHENDPOINT:$(dirname $i) 
+done
+
+# End ssh-push

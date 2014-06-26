@@ -1,0 +1,14 @@
+#!/bin/sh
+
+SSHENDPOINT=$1
+shift
+for i in $* 
+do 
+	rsync -niae ssh $i $SSHENDPOINT:$(dirname $i) \
+	    | grep -v .git \
+            | grep -vE '~$' \
+            | grep -vE '#$' \
+            | grep -vE '/[.]*#[^/]+ -> .*'
+done
+
+# End ssh-push
