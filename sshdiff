@@ -1,14 +1,23 @@
 #!/bin/sh
 
+function localize {
+    # What's the HOME dir?
+    homedir=$(cd ~ ; pwd)
+    echo $(realpath $1) | sed -rne "s|${homedir}/(.*)|\1|p"
+}
+
+# $1 is the target we're diff-ing with
 SSHENDPOINT=$1
+
+# Now diff each argument
 shift
 for i in $* 
 do 
-	rsync -niae ssh $i $SSHENDPOINT:$(dirname $i) \
-	    | grep -v .git \
-            | grep -vE '~$' \
-            | grep -vE '#$' \
-            | grep -vE '/[.]*#[^/]+ -> .*'
+    rsync -niae ssh $i $SSHENDPOINT:$(dirname $(localize $i)) \
+        | grep -v .git \
+        | grep -vE '~$' \
+        | grep -vE '#$' \
+        | grep -vE '/[.]*#[^/]+ -> .*'
 done
 
 # End ssh-push

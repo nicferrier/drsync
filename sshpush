@@ -1,10 +1,17 @@
 #!/bin/sh
 
+
+function localize {
+    # What's the HOME dir?
+    homedir=$(cd ~ ; pwd)
+    echo $(realpath $1) | sed -rne "s|${homedir}/(.*)|\1|p"
+}
+
 SSHENDPOINT=$1
 shift
 for i in $* 
 do 
-	rsync -aie ssh $i $SSHENDPOINT:$(dirname $i) 
+    rsync -niae ssh $i $SSHENDPOINT:$(dirname $(localize $i)) 
 done
 
 # End ssh-push
